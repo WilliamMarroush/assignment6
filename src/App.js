@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React,{useEffect} from 'react';
 import './App.css';
+import ZipSearch from './Components/ZipSearch';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const getCities =()=>{
+    try{
+      const response =fetch("putzipcitieswebsitehere");
+      //console.log(response);
+      const jsonData = response.json();
+      console.log(jsonData);
+    }catch(err){
+      //console.error(err.message);
+    }
+  }
+  useEffect(()=>{
+    getCities();
+  });
 
+  return (
+  <div>
+    Hello from App.js
+    <ZipSearch/>
+  </div>
+  )
+}
 export default App;
